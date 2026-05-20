@@ -30,21 +30,30 @@ function getMarketIcon(category: string) {
 export default function MarketCard({ market }: { market: OnchainMarket }) {
   const [amount, setAmount] = useState("1");
   const [message, setMessage] = useState("");
+  const [txHash, setTxHash] = useState("");
 
   const { buyYes, buyNo, claim, isPending } = usePredictionMarket();
 
   const yesNumber = Number(market.yesPrice.replace("¢", ""));
   const marketIcon = getMarketIcon(market.category);
 
-  const showMessage = (text: string) => {
+  const showMessage = (text: string, hash?: string) => {
     setMessage(text);
-    setTimeout(() => setMessage(""), 2500);
+    setTxHash(hash ?? "");
+
+    setTimeout(() => {
+      setMessage("");
+      setTxHash("");
+    }, 6000);
   };
 
   const handleBuyYes = async () => {
     try {
-      await buyYes(BigInt(market.id), amount);
-      showMessage("YES position purchased successfully");
+      const receipt: any = await buyYes(BigInt(market.id), amount);
+      showMessage(
+        "YES position purchased successfully",
+        receipt?.transactionHash
+      );
     } catch (err) {
       console.error(err);
       showMessage("YES purchase failed");
@@ -53,8 +62,11 @@ export default function MarketCard({ market }: { market: OnchainMarket }) {
 
   const handleBuyNo = async () => {
     try {
-      await buyNo(BigInt(market.id), amount);
-      showMessage("NO position purchased successfully");
+      const receipt: any = await buyNo(BigInt(market.id), amount);
+      showMessage(
+        "NO position purchased successfully",
+        receipt?.transactionHash
+      );
     } catch (err) {
       console.error(err);
       showMessage("NO purchase failed");
@@ -63,8 +75,11 @@ export default function MarketCard({ market }: { market: OnchainMarket }) {
 
   const handleClaim = async () => {
     try {
-      await claim(BigInt(market.id));
-      showMessage("Payout claimed successfully");
+      const receipt: any = await claim(BigInt(market.id));
+      showMessage(
+        "Payout claimed successfully",
+        receipt?.transactionHash
+      );
     } catch (err) {
       console.error(err);
       showMessage("Claim failed");
@@ -76,7 +91,21 @@ export default function MarketCard({ market }: { market: OnchainMarket }) {
       {message && (
         <div className="success-toast">
           <div className="toast-icon">✓</div>
-          <strong>{message}</strong>
+
+          <div>
+            <strong>{message}</strong>
+
+            {txHash && (
+              <a
+                href={`https://testnet.arcscan.app/tx/${txHash}`}
+                target="_blank"
+                rel="noreferrer"
+                className="tx-link"
+              >
+                View transaction on ArcScan ↗
+              </a>
+            )}
+          </div>
         </div>
       )}
 
