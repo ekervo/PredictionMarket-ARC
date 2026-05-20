@@ -59,7 +59,7 @@ export default function Portfolio() {
   );
 
   if (visible.length === 0) {
-    return <div className="empty-text">Ví này chưa có vị thế YES/NO.</div>;
+    return <div className="empty-text">This wallet does not yet have a YES/NO position.</div>;
   }
 
   return (

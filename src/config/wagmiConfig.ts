@@ -1,26 +1,14 @@
-import {
-  createConfig,
-  http,
-} from "wagmi";
+import { createConfig, http } from "wagmi";
+import { injected } from "wagmi/connectors";
 
-import {
-  injected,
-} from "wagmi/connectors";
+import { arcTestnet } from "./arcTestnet";
 
-import {
-  arcTestnet,
-} from "./arcTestnet";
+export const wagmiConfig = createConfig({
+  chains: [arcTestnet],
 
-export const wagmiConfig =
-  createConfig({
-    chains: [arcTestnet],
+  connectors: [injected()],
 
-    connectors: [
-      injected(),
-    ],
-
-    transports: {
-      [arcTestnet.id]:
-        http(),
-    },
-  });
+  transports: {
+    [arcTestnet.id]: http("https://rpc.testnet.arc.network"),
+  },
+});

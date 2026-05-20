@@ -11,6 +11,39 @@ import { useMarkets } from "./hooks/useMarkets";
 
 import "./App.css";
 
+const ARC_CHAIN_CONFIG = {
+  chainId: "0x4cef52",
+  chainName: "Arc Network Testnet",
+  nativeCurrency: {
+    name: "USDC",
+    symbol: "USDC",
+    decimals: 18,
+  },
+  rpcUrls: ["https://rpc.testnet.arc.network"],
+  blockExplorerUrls: ["https://testnet.arcscan.app"],
+};
+
+async function switchNetworkToArc() {
+  const ethereum = (window as any).ethereum;
+  if (!ethereum) return;
+
+  try {
+    await ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: ARC_CHAIN_CONFIG.chainId }],
+    });
+  } catch (err: any) {
+    if (err.code === 4902) {
+      await ethereum.request({
+        method: "wallet_addEthereumChain",
+        params: [ARC_CHAIN_CONFIG],
+      });
+    } else {
+      console.error("Cannot switch to ARC:", err);
+    }
+  }
+}
+
 export default function App() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [activeTab, setActiveTab] = useState("Markets");
@@ -20,6 +53,32 @@ export default function App() {
   const { disconnect } = useDisconnect();
 
   const { markets } = useMarkets();
+
+  const handleConnect = async () => {
+  try {
+    const ethereum = (window as any).ethereum;
+
+    if (!ethereum) {
+      alert("Please install MetaMask");
+      return;
+    }
+
+    // Connect MetaMask first
+    await ethereum.request({
+      method: "eth_requestAccounts",
+    });
+
+    // Switch to ARC network
+    await switchNetworkToArc();
+
+    // Sync wagmi state
+    await connect({
+      connector: connectors[0],
+    });
+  } catch (err) {
+    console.error("Connect or switch failed:", err);
+  }
+};
 
   const isAdmin =
     address?.toLowerCase() === ADDRESSES.ADMIN.toLowerCase();
@@ -47,6 +106,7 @@ export default function App() {
       <nav className="navbar">
         <div className="brand">
           <div className="logo">⚔</div>
+
           <div>
             <strong>PredictionMarket ARC</strong>
             <span>TESTNET</span>
@@ -75,10 +135,7 @@ export default function App() {
               {address?.slice(0, 6)}...{address?.slice(-4)}
             </button>
           ) : (
-            <button
-              onClick={() => connect({ connector: connectors[0] })}
-              className="wallet-btn"
-            >
+            <button onClick={handleConnect} className="wallet-btn">
               Connect Wallet
             </button>
           )}
