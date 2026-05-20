@@ -88,8 +88,8 @@ export default function App() {
       <section className="hero">
         <div>
           <h1>PredictionMarket ARC</h1>
-          <h2>Predict. Trade. Win USDC.</h2>
-          <p>Trade YES or NO with USDC on Arc Network testnet.</p>
+          <h2>Trade the future on Arc Network.</h2>
+          <p>Buy YES or NO positions using USDC on Arc Testnet.</p>
         </div>
 
         <div className="stats">
@@ -111,7 +111,7 @@ export default function App() {
       </section>
 
       <section className="top-movers">
-        <p className="section-label">TOP MOVERS</p>
+        <p className="section-label">Trading Trends</p>
 
         <div className="mover-grid">
           {markets.slice(0, 4).map((market) => (

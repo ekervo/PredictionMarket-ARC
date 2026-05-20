@@ -1,8 +1,8 @@
 body {
   margin: 0;
-  background: #f5f2ff;
-  color: #120c2d;
-  font-family: Inter, Arial, sans-serif;
+  background: #0b0618;
+  color: #f5f3ff;
+  font-family: Inter, sans-serif;
 }
 
 .app {
@@ -12,9 +12,9 @@ body {
 .navbar {
   height: 58px;
   padding: 0 66px;
-  background: rgba(255, 255, 255, 0.75);
+  background: rgba(12, 8, 26, 0.92);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid #e4dcff;
+  border-bottom: 1px solid #312e81;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -109,7 +109,13 @@ body {
   margin: 0;
   font-size: 72px;
   line-height: 0.95;
-  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+
+  background: linear-gradient(
+    135deg,
+    #c084fc,
+    #22d3ee
+  );
+
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -129,14 +135,11 @@ body {
 }
 
 .stats div {
-  width: 150px;
-  height: 78px;
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid #e8ddff;
-  border-radius: 14px;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.08);
+  background: #f8fafc;
+  border-radius: 18px;
+  padding: 24px;
+  color: #111827;
+  border: 1px solid #312e81;
 }
 
 .stats span {
@@ -146,10 +149,10 @@ body {
 
 .top-movers {
   margin: 0 42px 22px;
-  border: 1px solid #e8ddff;
+  border: 1px solid #4c1d95;
   border-radius: 16px;
   padding: 18px 24px;
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(20, 14, 40, 0.92);
   backdrop-filter: blur(10px);
 }
 
@@ -167,11 +170,10 @@ body {
 }
 
 .mover-card {
-  background: white;
-  border: 1px solid #e8ddff;
-  border-radius: 12px;
-  padding: 14px;
-  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.06);
+  background: #f8fafc;
+  border-radius: 16px;
+  padding: 18px;
+  color: #111827;
 }
 
 .mover-card strong {
@@ -231,12 +233,13 @@ body {
 }
 
 .market-card {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(20, 14, 40, 0.92);
   backdrop-filter: blur(14px);
-  border: 1px solid #e8ddff;
+  border: 1px solid #4c1d95;
   border-radius: 18px;
   padding: 18px;
-  box-shadow: 0 10px 30px rgba(124, 58, 237, 0.08);
+  box-shadow: 0 10px 30px rgba(76, 29, 149, 0.25);
+  color: white;
 }
 
 .card-header {
@@ -246,14 +249,17 @@ body {
 }
 
 .market-logo {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  border: 1px solid #d8b4fe;
-  background: #f3e8ff;
-  color: #6d28d9;
-  display: grid;
-  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(124, 58, 237, 0.12);
+  border: 1px solid #7c3aed;
+  font-size: 18px;
+  font-weight: 700;
+  color: #c084fc;
 }
 
 .tag {
@@ -351,15 +357,15 @@ body {
 }
 
 .trade-buttons button:first-child {
-  background: #ecfeff;
-  color: #0891b2;
-  border: 1px solid #a5f3fc;
+  background: rgba(34, 211, 238, 0.15);
+  border: 1px solid #22d3ee;
+  color: #67e8f9;
 }
 
 .trade-buttons button:last-child {
-  background: #fdf2f8;
-  color: #be185d;
-  border: 1px solid #fbcfe8;
+  background: rgba(244, 63, 94, 0.12);
+  border: 1px solid #f43f5e;
+  color: #fda4af;
 }
 
 .trade-buttons button,
@@ -453,8 +459,8 @@ body {
 }
 
 .pool-row div {
-  background: #faf7ff;
-  border: 1px solid #eadcff;
+  background: #f8fafc;
+  border: 1px solid #c4b5fd;
   border-radius: 10px;
   padding: 8px;
 }
@@ -485,10 +491,20 @@ body {
 }
 
 .pool-row div {
-  background: #faf7ff;
-  border: 1px solid #eadcff;
+  background: #f8fafc;
+  border: 1px solid #c4b5fd;
   border-radius: 10px;
   padding: 8px;
+}
+
+.pool-row div strong {
+  color: #111827;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.pool-row div span {
+  color: #6b7280;
 }
 
 .pool-row span {
@@ -580,7 +596,15 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
-.portfolio-card,
+.portfolio-card {
+  background: #f8fafc;
+  border: 1px solid #4c1d95;
+  border-radius: 22px;
+  padding: 22px;
+  color: #111827;
+  box-shadow: 0 12px 40px rgba(76, 29, 149, 0.22);
+}
+
 .activity-card {
   background: white;
   border: 1px solid #e8ddff;
@@ -590,13 +614,14 @@ body {
 }
 
 .portfolio-card h3 {
-  margin-top: 12px;
+  color: #111827;
 }
 
 .portfolio-row {
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #eee7ff;
+  border-top: 1px solid #d8b4fe;
+  color: #111827;
   padding-top: 10px;
   margin-top: 10px;
 }
@@ -626,5 +651,74 @@ body {
   .activity-card {
     grid-template-columns: 1fr;
     gap: 6px;
+  }
+}
+
+.center-state {
+  min-height: 260px;
+  margin: 30px 66px 50px;
+  border: 1px solid #e8ddff;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.72);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 14px 40px rgba(124, 58, 237, 0.08);
+  text-align: center;
+}
+
+.center-state h3 {
+  margin: 0;
+  font-size: 24px;
+  color: #120c2d;
+}
+
+.center-state p {
+  margin-top: 8px;
+  color: #6b647d;
+  font-weight: 600;
+}
+
+.success-toast {
+  position: fixed;
+  top: 88px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  min-width: 320px;
+  max-width: 460px;
+  padding: 18px 22px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #d8b4fe;
+  box-shadow: 0 18px 60px rgba(124, 58, 237, 0.24);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #120c2d;
+  animation: toastIn 0.25s ease-out;
+}
+
+.toast-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color: white;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
 }
