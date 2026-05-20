@@ -12,7 +12,7 @@ export const ADDRESSES = {
 export const PREDICTION_MARKET_ADDRESS = ADDRESSES.ROUTER;
 
 export const ARC_TESTNET = {
-  id: 504,
+  id: 5042002,
   name: "Arc Testnet",
   nativeCurrency: {
     name: "USDC",
